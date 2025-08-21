@@ -1,2 +1,7 @@
-# ConnectFourAI
-A connect4 AI built upon reinforcement learning. The foundation of the game uses pettingzoo's environments to simulate games and stable-baselines3 for reinforcement learning algorithms
+This is a project to try and learn reinforcment learning
+
+Step 1: Random Agent
+Step 2: Rule-based Agent
+Step 3: RL agent
+
+The environment used is PettingZoo
