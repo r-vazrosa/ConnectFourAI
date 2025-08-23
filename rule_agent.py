@@ -1,4 +1,5 @@
 import pettingzoo
+import numpy as np
 from pettingzoo.classic import connect_four_v3
 
 env = connect_four_v3.env(render_mode = 'human')
@@ -14,7 +15,7 @@ for agent in env.agent_iter(): # Cycle turns of the game
 
     for i, move in enumerate(obs['action_mask']):
         if move == 1:
-            legal_moves.append(str(i))
+            legal_moves.append(i)
 
     # If game ends
     if terminated or truncated: 
@@ -25,20 +26,25 @@ for agent in env.agent_iter(): # Cycle turns of the game
     else: 
         # Player 0 input, catching any errors or illegal moves
         if agent == "player_0":
+            print("obs['observation'] shape:", getattr(obs.get("observation", None), "shape", None))
+
             valid = False
             while not valid:
                 try:
-                    col = int(input("Player 0 Move (0-6): "))
-                    if col in env.action_space(agent):
-                        action = col
+                    move = int(input("Player 0 Move (0-6): "))
+                    if move in legal_moves:
+                        action = move
                         valid = True
                     else:
                         print("Column full or invalid, try again.")
                 except ValueError:
                     print("Enter a number between 0-6")
-        # Player 1 random move from possible legal moves
+        # Rule based agent
         else:
-            action = env.action_space(agent).sample()
+            if 3 in legal_moves:
+                action = 3
+            else:
+                action = np.random.choice(legal_moves)
 
     env.step(action)
 

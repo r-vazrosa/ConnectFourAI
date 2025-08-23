@@ -1,0 +1,3 @@
+#Step 2: Rule Based Agent
+- I learned the difference between an action space and mask, space is all possible actions, where mask is the current actions that can actually happen, in connect four being space including full spaces where mask doesn't.
+- I learned what channels are, they are extra layers of information as a dimension that have some arbituary value. In this case, there is a dimension of two for each players current pieces, 1 representing a piece is there while 0 is an empty place. When these two channels combine, we get a picture of the board as a whole. RGB is also a set of 3 channels that is a non binary example (0-255). This is used to make processes more efficient and understandable for machines
